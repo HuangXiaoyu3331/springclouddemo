@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozermapper.github.io/schema/bean-mapping"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
+
+   <mapping>
+       <class-a>com.hxy.product.server.bean.model.ProductModel</class-a>
+       <class-b>com.hxy.product.server.bean.vo.ProductVo2</class-b>
+       <field>
+           <a>id</a>
+           <b>productId</b>
+       </field>
+       <field>
+           <a>price</a>
+           <b>productPrice</b>
+       </field>
+       <field>
+           <a>createTime</a>
+           <b>productCreateTime</b>
+       </field>
+   </mapping>
+
+</mappings>

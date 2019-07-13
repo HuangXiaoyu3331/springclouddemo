@@ -1,0 +1,16 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: ek-server
+eureka:
+  instance:
+    hostname: ek-server
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  server:
+    #关闭保护模式，生产模式下要开启
+    enable-self-preservation: false

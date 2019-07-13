@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: order
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        # config-client会去eureka上找配置里的service-id，这里配置的是config-server，所以会去找名称为“config-server”的服务，
+        # 找不到的话，会把127.0.0.1:8888当成config-server
+        service-id: CONFIG-SERVER
+      profile: dev
+
+#eureka配置需要放到bootstrap里，因为项目启动会先找eureka的配置，然后再从config-server中拉取其他配置（顺序问题）
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/

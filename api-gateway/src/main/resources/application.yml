@@ -1,0 +1,22 @@
+server:
+  port: 9234
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: order_route
+          uri: lb://order
+          predicates:
+            - Path=/order/**
+#        - id: product_route
+#            uri: lb://product
+#            predicates:
+#              - Path=/product/**
+
+#eureka配置
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
