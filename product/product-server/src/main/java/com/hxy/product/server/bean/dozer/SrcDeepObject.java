@@ -1,4 +1,4 @@
-package com.hxy.product.server.dozer;
+package com.hxy.product.server.bean.dozer;
 
 import com.hxy.product.server.bean.model.ProductModel;
 import lombok.Data;
