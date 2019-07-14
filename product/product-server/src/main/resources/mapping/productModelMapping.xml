@@ -5,7 +5,7 @@
 
    <mapping>
        <class-a>com.hxy.product.server.bean.model.ProductModel</class-a>
-       <class-b>com.hxy.product.server.bean.vo.ProductVo2</class-b>
+       <class-b>com.hxy.product.client.vo.ProductVo2</class-b>
        <field>
            <a>id</a>
            <b>productId</b>

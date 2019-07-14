@@ -1,4 +1,4 @@
-package com.hxy.product.server.bean.vo;
+package com.hxy.product.client.vo;
 
 import lombok.Data;
 import lombok.ToString;

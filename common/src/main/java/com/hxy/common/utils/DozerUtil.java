@@ -3,6 +3,7 @@ package com.hxy.common.utils;
 import com.github.dozermapper.core.Mapper;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**

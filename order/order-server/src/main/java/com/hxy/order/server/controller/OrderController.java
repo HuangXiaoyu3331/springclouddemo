@@ -4,15 +4,15 @@ import com.hxy.common.core.ApiResponse;
 import com.hxy.common.core.SystemError;
 import com.hxy.common.exception.AppException;
 import com.hxy.product.client.ProductClient;
+import com.hxy.product.client.vo.resquest.ProductResVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 
 /**
@@ -32,19 +32,19 @@ public class OrderController {
     @Value("${env}")
     private String env;
 
-    @GetMapping("/list")
+    @GetMapping("/hello")
     public String list() {
         return productClient.hello() + ":" + env;
     }
 
-    @GetMapping("/add")
-    public ApiResponse add(){
-        return productClient.add();
+    @PostMapping("/addProduct")
+    public ApiResponse add(@Valid @RequestBody ProductResVo productResVo) {
+        return productClient.add(productResVo);
     }
 
     @GetMapping("/getProductList")
-    public ApiResponse getProductList(int pageNo,int pageSize){
-        return productClient.list(pageNo,pageSize);
+    public ApiResponse getProductList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
+        return productClient.list(pageNo, pageSize);
     }
 
 }

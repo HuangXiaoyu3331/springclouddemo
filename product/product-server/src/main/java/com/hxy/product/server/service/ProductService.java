@@ -1,6 +1,7 @@
 package com.hxy.product.server.service;
 
 import com.hxy.common.core.ApiResponse;
+import com.hxy.product.client.vo.resquest.ProductResVo;
 import com.hxy.product.server.bean.model.ProductModel;
 
 /**
@@ -11,7 +12,7 @@ import com.hxy.product.server.bean.model.ProductModel;
  */
 public interface ProductService {
 
-    ApiResponse add(ProductModel model);
+    ApiResponse add(ProductResVo model);
 
     ApiResponse list(int pageNo, int pageSize);
 

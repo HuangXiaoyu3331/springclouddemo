@@ -1,8 +1,10 @@
 package com.hxy.product.client;
 
 import com.hxy.common.core.ApiResponse;
+import com.hxy.product.client.vo.resquest.ProductResVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -21,9 +23,9 @@ public interface ProductClient {
     String get(Long id) throws Exception;
 
     @GetMapping("/add")
-    ApiResponse add();
+    ApiResponse add(ProductResVo productResVo);
 
     // 使用Feign的时候，必须要加@RequestParam注解
     @GetMapping("/list")
-    ApiResponse list(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize);
+    ApiResponse list(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize);
 }

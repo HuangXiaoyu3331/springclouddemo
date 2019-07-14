@@ -1,10 +1,13 @@
 package com.hxy.product.server.controller;
 
 import com.hxy.common.core.ApiResponse;
+import com.hxy.product.client.vo.resquest.ProductResVo;
 import com.hxy.product.server.bean.model.ProductModel;
 import com.hxy.product.server.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * @author 黄晓宇
@@ -25,12 +28,12 @@ public class ProductController {
     }
 
     @GetMapping("/get")
-    public ApiResponse get(Long id){
+    public ApiResponse get(Long id) {
         return productService.get(id);
     }
 
     @PostMapping("/add")
-    public ApiResponse error(@RequestBody ProductModel productModel) {
+    public ApiResponse add(@Valid @RequestBody ProductResVo productModel) {
         return productService.add(productModel);
     }
 

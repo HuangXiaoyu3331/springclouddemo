@@ -2,11 +2,11 @@ package com.hxy.product.server;
 
 import com.github.dozermapper.core.Mapper;
 import com.hxy.common.utils.DozerUtil;
+import com.hxy.product.client.vo.ProductVo;
+import com.hxy.product.client.vo.ProductVo2;
 import com.hxy.product.server.bean.model.ProductModel;
-import com.hxy.product.server.bean.vo.ProductVo;
-import com.hxy.product.server.bean.vo.ProductVo2;
-import com.hxy.product.server.bean.dozer.DesDeepObject;
-import com.hxy.product.server.bean.dozer.SrcDeepObject;
+import com.hxy.product.server.bean.dozer.test.DesDeepObject;
+import com.hxy.product.server.bean.dozer.test.SrcDeepObject;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;

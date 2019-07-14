@@ -75,6 +75,13 @@
             <version>${dozer-version}</version>
         </dependency>
 
+        <!--product client-->
+        <dependency>
+            <groupId>com.hxy</groupId>
+            <artifactId>product-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>

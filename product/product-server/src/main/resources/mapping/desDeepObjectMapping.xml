@@ -4,8 +4,8 @@
           xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
 
     <mapping>
-        <class-a>com.hxy.product.server.bean.dozer.SrcDeepObject</class-a>
-        <class-b>com.hxy.product.server.bean.dozer.DesDeepObject</class-b>
+        <class-a>com.hxy.product.server.bean.dozer.test.SrcDeepObject</class-a>
+        <class-b>com.hxy.product.server.bean.dozer.test.DesDeepObject</class-b>
         <field>
             <a>name</a>
             <b>desName</b>
@@ -14,14 +14,8 @@
             <a>srcProductModel</a>
             <b>desProductVo2</b>
             <a-hint>com.hxy.product.server.bean.model.ProductModel</a-hint>
-            <b-hint>com.hxy.product.server.bean.vo.ProductVo2</b-hint>
+            <b-hint>com.hxy.product.client.vo.ProductVo2</b-hint>
         </field>
-        <!--<field>-->
-            <!--<a>srcProductModelList</a>-->
-            <!--<b>desProductVo2List</b>-->
-            <!--<a-deep-index-hint>com.hxy.product.server.bean.model.ProductModel</a-deep-index-hint>-->
-            <!--<b-deep-index-hint>com.hxy.product.server.bean.vo.ProductVo2</b-deep-index-hint>-->
-        <!--</field>-->
     </mapping>
 
 </mappings>

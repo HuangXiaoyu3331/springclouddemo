@@ -1,7 +1,6 @@
-package com.hxy.product.server.bean.dozer;
+package com.hxy.product.server.bean.dozer.test;
 
-import com.hxy.product.server.bean.vo.ProductVo;
-import com.hxy.product.server.bean.vo.ProductVo2;
+import com.hxy.product.client.vo.ProductVo2;
 import lombok.Data;
 import lombok.ToString;
 

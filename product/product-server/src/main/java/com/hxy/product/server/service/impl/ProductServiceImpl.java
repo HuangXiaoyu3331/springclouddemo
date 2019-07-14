@@ -6,14 +6,14 @@ import com.github.pagehelper.PageInfo;
 import com.hxy.common.core.ApiResponse;
 import com.hxy.common.core.SystemError;
 import com.hxy.common.utils.DozerUtil;
+import com.hxy.product.client.vo.ProductVo;
+import com.hxy.product.client.vo.resquest.ProductResVo;
 import com.hxy.product.server.bean.model.ProductModel;
-import com.hxy.product.server.bean.vo.ProductVo;
 import com.hxy.product.server.dao.ProductMapper;
 import com.hxy.product.server.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,8 +31,9 @@ public class ProductServiceImpl implements ProductService {
     private Mapper dozerMapper;
 
     @Override
-    public ApiResponse add(ProductModel model) {
-        int resultCount = productMapper.insert(model);
+    public ApiResponse add(ProductResVo productResVo) {
+        ProductModel productModel = dozerMapper.map(productResVo,ProductModel.class);
+        int resultCount = productMapper.insert(productModel);
         if (resultCount > 0) {
             return ApiResponse.createBySuccess();
         }
