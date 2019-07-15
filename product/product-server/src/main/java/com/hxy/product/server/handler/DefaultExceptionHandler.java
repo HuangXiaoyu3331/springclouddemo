@@ -2,6 +2,7 @@ package com.hxy.product.server.handler;
 
 import com.hxy.common.core.ApiResponse;
 import com.hxy.common.core.SystemError;
+import com.hxy.common.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +79,18 @@ public class DefaultExceptionHandler {
                     "参数:" + errorList.get(0).getField() + "的值:" + errorList.get(0).getDefaultMessage() + "无效");
         }
         return ApiResponse.createByError(SystemError.PARSE_PARAMS_FAIL);
+    }
+
+    /**
+     * 拦截所有异常
+     */
+    @ExceptionHandler(Exception.class)
+    public ApiResponse processException(Exception e) {
+        if (e instanceof AppException) {
+            return ApiResponse.createByError(((AppException) e).getBaseError());
+        } else {
+            return ApiResponse.createByError(SystemError.SYSTEM_ERROR);
+        }
     }
 
 }
