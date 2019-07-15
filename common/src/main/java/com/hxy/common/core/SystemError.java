@@ -8,9 +8,12 @@ package com.hxy.common.core;
  */
 public enum SystemError implements BaseError {
     SYSTEM_ERROR(500, "系统错误"),
+    PARSE_PARAMS_FAIL(400, "参数解析失败"),
+    METHOD_NOT_SUPPORTED(405, "请求方法不支持"),
+    CURRENT_MEDIA_TYPE_NOT_SUPPORTED(415, "不支持当前媒体类型"),
     ;
 
-    SystemError(Integer errorCode, String errorMsg){
+    SystemError(Integer errorCode, String errorMsg) {
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
     }

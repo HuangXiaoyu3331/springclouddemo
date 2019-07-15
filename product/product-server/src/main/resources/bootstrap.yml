@@ -1,6 +1,9 @@
 spring:
   application:
     name: product
+  # 当然也可以把这个配置在github上，但是这样的话，会导致ConfigServicePropertySourceLocator后的日志才打印出来
+  profiles:
+    active: dev
   cloud:
     config:
       discovery:
@@ -8,6 +11,7 @@ spring:
         # config-client会去eureka上找配置里的service-id，这里配置的是config-server，所以会去找名称为“config-server”的服务，
         # 找不到的话，会把127.0.0.1:8888当成config-server
         service-id: CONFIG-SERVER
+      profile: dev
 
 # eureka 配置
 eureka:

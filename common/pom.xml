@@ -37,6 +37,12 @@
             <version>${dozer-version}</version>
         </dependency>
 
+        <!-- joda-time时间处理 -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
     </dependencies>
 
 

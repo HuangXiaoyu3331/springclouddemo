@@ -1,6 +1,8 @@
 spring:
   application:
     name: order
+  profiles:
+    active: dev
   cloud:
     config:
       discovery:

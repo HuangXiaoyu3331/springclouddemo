@@ -21,6 +21,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * dozer简单使用示例
+ *
  * @author 黄晓宇
  * @version v1.0
  * @ClassName: dozerTest

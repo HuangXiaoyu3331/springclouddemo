@@ -3,7 +3,6 @@ package com.hxy.common.utils;
 import com.github.dozermapper.core.Mapper;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -26,7 +25,7 @@ public class DozerUtil {
      * @return
      */
     public static <T, S> List<T> mapList(final Mapper mapper, List<S> sourceList, Class<T> destinationObjectClass) {
-        List<T> targetList = new ArrayList<T>();
+        List<T> targetList = new ArrayList<>();
         for (S s : sourceList) {
             targetList.add(mapper.map(s, destinationObjectClass));
         }
