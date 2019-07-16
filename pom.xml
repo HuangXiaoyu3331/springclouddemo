@@ -10,6 +10,7 @@
         <module>order</module>
         <module>config-server</module>
         <module>common</module>
+        <module>actuator</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -32,6 +33,9 @@
         <druid-version>1.1.10</druid-version>
         <pagehelper-version>1.2.10</pagehelper-version>
         <dozer-version>6.5.0</dozer-version>
+        <!--spring boot admin版本要跟spring boot版本保持一致，否则会报错-->
+        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
+        <!--<spring-boot-admin-ui.version>1.5.7</spring-boot-admin-ui.version>-->
     </properties>
 
     <dependencies>

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: product
+    name: PRODUCT
   # 当然也可以把这个配置在github上，但是这样的话，会导致ConfigServicePropertySourceLocator后的日志才打印出来
   profiles:
     active: dev
@@ -12,6 +12,28 @@ spring:
         # 找不到的话，会把127.0.0.1:8888当成config-server
         service-id: CONFIG-SERVER
       profile: dev
+
+#  redis:
+#    # 连接超时时间
+#    timeout: 3000
+#    cluster:
+#      nodes:
+#        - 127.0.0.1:6379
+#        - 127.0.0.1:6380
+#        - 127.0.0.1:6381
+#        - 127.0.0.1:6382
+#        - 127.0.0.1:6383
+#        - 127.0.0.1:6384
+#      # 最大的要重定向的次数（由于集群中数据存储在多个节点所以，在访问数据时需要通过节点进行转发）
+#      max-redirects: 3
+#    jedis:
+#      pool:
+#        # 最大连接数
+#        max-active: 300
+#        # 最大空闲连接数
+#        max-idle: 100
+#        # 最小空闲连接数
+#        min-idle: 20
 
 # eureka 配置
 eureka:

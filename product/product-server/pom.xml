@@ -82,6 +82,13 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!--spring boot admin 客户端-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${spring-boot-admin.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

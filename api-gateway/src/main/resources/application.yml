@@ -10,10 +10,6 @@ spring:
           uri: lb://order
           predicates:
             - Path=/order/**
-#        - id: product_route
-#            uri: lb://product
-#            predicates:
-#              - Path=/product/**
 
 #eureka配置
 eureka:
