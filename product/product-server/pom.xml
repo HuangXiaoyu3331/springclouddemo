@@ -39,7 +39,7 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${mybatis-version}</version>
+            <version>${mybatis.version}</version>
         </dependency>
 
         <!--mysql驱动-->
@@ -52,14 +52,14 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid-version}</version>
+            <version>${druid.version}</version>
         </dependency>
 
         <!--mybatis pagehelper 分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${pagehelper-version}</version>
+            <version>${pagehelper.version}</version>
         </dependency>
 
         <!--aop-->
@@ -72,7 +72,7 @@
         <dependency>
             <groupId>com.github.dozermapper</groupId>
             <artifactId>dozer-spring-boot-starter</artifactId>
-            <version>${dozer-version}</version>
+            <version>${dozer.version}</version>
         </dependency>
 
         <!--product client-->
@@ -96,7 +96,7 @@
         <!--<dependency>-->
             <!--<groupId>de.codecentric</groupId>-->
             <!--<artifactId>spring-boot-admin-starter-client</artifactId>-->
-            <!--<version>${spring-boot-admin.version}</version>-->
+            <!--<version>${spring.boot.admin.version}</version>-->
         <!--</dependency>-->
 
     </dependencies>
@@ -111,12 +111,12 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql-connector-version}</version>
+                        <version>${mysql.connector.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.mybatis.generator</groupId>
                         <artifactId>mybatis-generator-core</artifactId>
-                        <version>${mybatis-generator-version}</version>
+                        <version>${mybatis.generator.version}</version>
                     </dependency>
                 </dependencies>
                 <executions>

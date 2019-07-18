@@ -27,14 +27,14 @@
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
-            <version>${mybatis-generator-version}</version>
+            <version>${mybatis.generator.version}</version>
         </dependency>
 
         <!--dozer-->
         <dependency>
             <groupId>com.github.dozermapper</groupId>
             <artifactId>dozer-core</artifactId>
-            <version>${dozer-version}</version>
+            <version>${dozer.version}</version>
         </dependency>
 
         <!-- joda-time时间处理 -->

@@ -29,7 +29,7 @@
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-server</artifactId>
-            <version>${spring-boot-admin.version}</version>
+            <version>${spring.boot.admin.version}</version>
         </dependency>
 
         <!--Admin管理服务没有任何的安全措施，任何人知道ip和port就能访问，这就很不安全，而Spring Boot Admin也提供了登录页面。需要和Spring Security 配合使用。-->
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-server-ui-login</artifactId>
-            <version>${spring-boot-admin-ui.version}</version>
+            <version>${spring.boot.admin.ui.version}</version>
         </dependency>
 
         <!--admin security依赖-->
