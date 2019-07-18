@@ -6,6 +6,7 @@ spring:
 eureka:
   instance:
     hostname: ek-server
+    instance-id: ${spring.application.name}:${server.port}
   client:
     register-with-eureka: false
     fetch-registry: false

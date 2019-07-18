@@ -1,6 +1,8 @@
 spring:
   application:
-    name: order
+    name: actuator
+
+  # 当然也可以把这个配置在github上，但是这样的话，会导致ConfigServicePropertySourceLocator后的日志才打印出来
   profiles:
     active: dev
   cloud:
@@ -12,10 +14,13 @@ spring:
         service-id: CONFIG-SERVER
       profile: dev
 
-#eureka配置需要放到bootstrap里，因为项目启动会先找eureka的配置，然后再从config-server中拉取其他配置（顺序问题）
 eureka:
   instance:
     instance-id: ${spring.application.name}:${server.port}
+    metadata-map:
+      user.name: "admin"      #These two are needed so that the server
+      user.password: "admin"  #can access the protected client endpoints
+      startup: ${random.int}
   client:
-    service-url:
-      default-zone: http://localhost:8761/eureka/
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

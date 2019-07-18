@@ -82,12 +82,22 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!--spring boot admin 客户端-->
+        <!--actuator依赖-->
         <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>${spring-boot-admin.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+        <!--
+            在springcloud上，不用导包，admin server回自动拉取eureka上的服务，
+            如果导入的话啊，在admin面板上会发现有两个同名应用
+            但是需要导actuator的包
+        -->
+        <!--<dependency>-->
+            <!--<groupId>de.codecentric</groupId>-->
+            <!--<artifactId>spring-boot-admin-starter-client</artifactId>-->
+            <!--<version>${spring-boot-admin.version}</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 

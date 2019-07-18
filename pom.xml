@@ -35,7 +35,7 @@
         <dozer-version>6.5.0</dozer-version>
         <!--spring boot admin版本要跟spring boot版本保持一致，否则会报错-->
         <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
-        <!--<spring-boot-admin-ui.version>1.5.7</spring-boot-admin-ui.version>-->
+        <spring-boot-admin-ui.version>1.5.7</spring-boot-admin-ui.version>
     </properties>
 
     <dependencies>
