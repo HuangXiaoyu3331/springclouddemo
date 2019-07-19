@@ -2,9 +2,8 @@ spring:
   application:
     name: actuator
 
-  # 当然也可以把这个配置在github上，但是这样的话，会导致ConfigServicePropertySourceLocator后的日志才打印出来
   profiles:
-    active: dev
+    active: dev # 当然也可以把这个配置在github上，但是这样的话，会导致ConfigServicePropertySourceLocator后的日志才打印出来
   cloud:
     config:
       discovery:
@@ -20,7 +19,6 @@ eureka:
     metadata-map:
       user.name: "admin"      #These two are needed so that the server
       user.password: "admin"  #can access the protected client endpoints
-      startup: ${random.int}
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/

@@ -65,7 +65,6 @@ public class DefaultExceptionHandler {
     /**
      * 参数绑定异常
      */
-    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class})
     public ApiResponse handleBindException(Exception e) {
         List<FieldError> errorList = new ArrayList<>();

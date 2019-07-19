@@ -3,6 +3,7 @@ server:
 spring:
   application:
     name: config-server
+
   cloud:
     # spring cloud config 配置，自动刷新url：http://localhost:9232/actutor/bus-refresh
     config:

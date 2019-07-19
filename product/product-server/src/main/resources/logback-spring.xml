@@ -85,7 +85,7 @@
     <springProfile name="prod,test">
         <!-- 基于info处理日志：具体控制台或者文件对日志级别的处理还要看所在appender配置的filter，如果没有配置filter，则使用root配置 -->
         <root level="info">
-            <appender-ref ref="STDOUT"/>
+            <!--<appender-ref ref="STDOUT"/>-->
             <appender-ref ref="INFO-OUT"/>
             <appender-ref ref="ERROR-OUT"/>
         </root>
@@ -95,9 +95,10 @@
     <springProfile name="dev">
         <!-- 输出mybatis的sql语句,没有这句就无法输出mybatis的sql语句，name属性指定到要输出日志的dao，即mybatis要代理的dao -->
         <logger name="com.hxy.product.server.dao" level="DEBUG"/>
-        <root level="info">
-            <appender-ref ref="STDOUT"/>
-        </root>
     </springProfile>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
 
 </configuration>

@@ -1,9 +1,9 @@
 spring:
   application:
-    name: PRODUCT
-  # 当然也可以把这个配置在github上，但是这样的话，会导致ConfigServicePropertySourceLocator后的日志才打印出来
+    name: product
+
   profiles:
-    active: dev
+    active: dev # 当然也可以把这个配置在github上，但是这样的话，会导致ConfigServicePropertySourceLocator后的日志才打印出来
   cloud:
     config:
       discovery:
