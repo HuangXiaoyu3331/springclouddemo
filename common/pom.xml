@@ -43,6 +43,12 @@
             <artifactId>joda-time</artifactId>
         </dependency>
 
+        <!--jedis client-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
     </dependencies>
 
 
