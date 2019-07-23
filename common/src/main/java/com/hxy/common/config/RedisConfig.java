@@ -1,9 +1,11 @@
-package com.hxy.product.server.config;
+package com.hxy.common.config;
 
 import com.hxy.common.utils.RedisUtil;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.data.redis.LettuceClientConfigurationBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.HostAndPort;
@@ -16,13 +18,16 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * redis 配置(支持集群跟单机)
+ *
  * @author 黄晓宇
  * @version v1.0
- * @ClassName: RedisClusterUtilConfig
- * @date 2019年07月22日 14:56:54
+ * @ClassName: RedisConfig
+ * @date 2019年07月23日 14:28:18
  */
 @Slf4j
 @Configuration
+@Data
 public class RedisConfig {
 
     // 连接超时时间
@@ -58,7 +63,7 @@ public class RedisConfig {
     private Long maxWait;
 
     // 密码
-    @Value("${spring.redis.password:}")
+    @Value("${spring.redis.password:#{null}}")
     private String password;
 
     // 数据库
@@ -85,8 +90,8 @@ public class RedisConfig {
     private JedisPool getJedisPool() {
         log.info("获取 jedis pool 实例,address:{},timeout:{},database:{}", clusterNodes.get(0), timeout, database);
         return new JedisPool(getJedisPoolConfig(),
-                ":".split(clusterNodes.get(0))[0],
-                Integer.valueOf(":".split(clusterNodes.get(0))[1]),
+                clusterNodes.get(0).split(":")[0],
+                Integer.valueOf(clusterNodes.get(0).split(":")[1]),
                 timeout,
                 password,
                 database);
@@ -97,8 +102,8 @@ public class RedisConfig {
      */
     private JedisCluster getJedisCluster() {
         Set<HostAndPort> hostAndPortSet = new HashSet<>();
-        clusterNodes.forEach(node ->hostAndPortSet.add(new HostAndPort(node.split(":")[0], Integer.valueOf(node.split(":")[1]))));
-        log.info("获取 jedis cluster 实例,nodes:{},timeout:{},soTimeout:{},maxAttempts:{}", clusterNodes, timeout, soTimeout, maxAttempts);
+        clusterNodes.forEach(node -> hostAndPortSet.add(new HostAndPort(node.split(":")[0], Integer.valueOf(node.split(":")[1]))));
+        log.info("获取 jedis cluster 实例,clusterNodes:{},timeout:{},soTimeout:{},maxAttempts:{}", clusterNodes, timeout, soTimeout, maxAttempts);
         if (StringUtils.isNotBlank(password)) {
             return new JedisCluster(hostAndPortSet, timeout, soTimeout, maxAttempts, password, getJedisPoolConfig());
         }
