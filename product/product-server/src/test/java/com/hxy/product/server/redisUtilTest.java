@@ -12,9 +12,9 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Set;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -34,7 +34,7 @@ public class redisUtilTest {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Before
+//    @Before
     public void set() {
         String statusA = redisUtil.set("a", "a");
         assertThat(statusA, is(equalTo("OK")));
@@ -61,14 +61,36 @@ public class redisUtilTest {
     }
 
     @Test
+    public void ttl() {
+        Long expirationTime = redisUtil.ttl("a");
+        assertThat(expirationTime, is(greaterThan(0L)));
+        expirationTime = redisUtil.ttl("b");
+        assertThat(expirationTime, is(equalTo(-1L)));
+    }
+
+    @Test
+    public void test() {
+        Set<String> keys = redisUtil.keys("*");
+        assertThat(keys.size(), is(greaterThan(0)));
+    }
+
+    @Test
     public void append() {
         Long length = redisUtil.append("b", "b");
         assertThat(length, is(equalTo(2L)));
     }
 
     @Test
-    public void mget() {
-        List<String> list = redisUtil.mget("a", "b");
-        log.info(list.toString());
+    public void exists() {
+        Boolean flag = redisUtil.exists("a");
+        assertThat(flag, is(equalTo(true)));
+    }
+
+    @Test
+    public void setnx() {
+        Long count = redisUtil.setnx("c", "c");
+        assertThat(count, is(equalTo(1L)));
+        count = redisUtil.setnx("c", "c");
+        assertThat(count, is(equalTo(0L)));
     }
 }
