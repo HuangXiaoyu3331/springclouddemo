@@ -85,6 +85,7 @@ public class DefaultExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ApiResponse processException(Exception e) {
+        log.error("系统异常:{}", e);
         if (e instanceof AppException) {
             return ApiResponse.createByError(((AppException) e).getBaseError());
         } else {

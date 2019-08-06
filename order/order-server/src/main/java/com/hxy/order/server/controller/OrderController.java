@@ -42,9 +42,9 @@ public class OrderController {
         return productClient.add(productResVo);
     }
 
-    @GetMapping("/getProductList")
-    public ApiResponse getProductList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
-        return productClient.list(pageNo, pageSize);
-    }
+//    @GetMapping("/getProductList")
+//    public ApiResponse getProductList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
+//        return productClient.list(pageNo, pageSize);
+//    }
 
 }

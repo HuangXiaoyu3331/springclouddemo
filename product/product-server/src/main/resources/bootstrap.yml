@@ -23,7 +23,7 @@ spring:
     # 数据库
     database: 0
     cluster:
-      nodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384
+      nodes: 127.0.0.1:6379
       # 最大的要重定向的次数（由于集群中数据存储在多个节点所以，在访问数据时需要通过节点进行转发）
       max-redirects: 3
     lettuce:
@@ -55,3 +55,16 @@ eureka:
   client:
     service-url:
       default-zone: http://localhost:8761/eureka/
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      ringBufferSizeInClosedState: 2
+      ringBufferSizeInHalfOpenState: 2
+      waitDurationInOpenState: 60s
+      failureRateThreshold: 50
+    instances:
+      backendA:
+        baseConfig: default
+        ringBufferSizeInClosedState: 5

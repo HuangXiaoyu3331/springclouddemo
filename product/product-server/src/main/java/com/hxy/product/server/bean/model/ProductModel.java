@@ -3,6 +3,14 @@ package com.hxy.product.server.bean.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 商品实体类
+ *
+ * @author 黄晓宇
+ * @version v1.0
+ * @ClassName: ProductClient
+ * @date 2019年07月13日 14:15:30
+ */
 public class ProductModel {
     private Long id;
 

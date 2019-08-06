@@ -24,7 +24,8 @@ public class ProductController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "hello world";
+        throw new RuntimeException();
+//        return "hello world";
     }
 
     @GetMapping("/get")
