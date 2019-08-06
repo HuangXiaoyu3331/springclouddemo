@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan(basePackages = "com.hxy.product.server.dao")
-@ComponentScan(basePackages = "com.hxy.common.config")
+@ComponentScan(basePackages = {"com.hxy.common.config","com.hxy.product.server"})
 public class ProductApplication {
 
     public static void main(String[] args) {
