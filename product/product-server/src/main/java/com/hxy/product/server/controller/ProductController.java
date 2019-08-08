@@ -1,5 +1,7 @@
 package com.hxy.product.server.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.hxy.common.core.ApiResponse;
 import com.hxy.product.client.vo.resquest.ProductResVo;
 import com.hxy.product.server.bean.model.ProductModel;
@@ -22,6 +24,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    /**
+     * blockHandler 函数，原方法调用被限流/降级/系统保护的时候调用
+     */
     @GetMapping("/hello")
     public String hello() {
         return "hello world";
@@ -41,5 +46,4 @@ public class ProductController {
     public ApiResponse list(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
         return productService.list(pageNo, pageSize);
     }
-
 }

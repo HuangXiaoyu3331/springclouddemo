@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: edge
+
+  profiles:
+    # 当然也可以把这个配置在github上，但是这样的话，会导致ConfigServicePropertySourceLocator后的日志才打印出来
+    active: dev
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        # config-client会去eureka上找配置里的service-id，这里配置的是config-server，所以会去找名称为“config-server”的服务，
+        # 找不到的话，会把127.0.0.1:8888当成config-server
+        service-id: CONFIG-SERVER
+      profile: dev
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defalut-zone: http://localhost:8761/eureka/

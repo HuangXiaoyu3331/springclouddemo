@@ -2,8 +2,8 @@
 <configuration>
     <contextName>product</contextName>
 
-    <!--配置文件存放目录-->
-    <property name="log.home" value="C:\Users\EDZ\Desktop\\do"/>
+    <!--配置日志文件存放目录-->
+    <property name="log.home" value="C:\Users\EDZ\Desktop\do"/>
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 （INFO：绿色  WARN：黄色  ERROR：红色）-->

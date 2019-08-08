@@ -12,11 +12,19 @@
     <artifactId>order-server</artifactId>
 
     <dependencies>
+        <!--商品服务-->
         <dependency>
             <groupId>com.hxy</groupId>
             <artifactId>product-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!--边缘服务-->
+        <dependency>
+            <groupId>com.hxy</groupId>
+            <artifactId>edge-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!--feign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -56,6 +64,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- spring-cloud-starter-alibaba-sentinel -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+            <version>${sentinel.version}</version>
         </dependency>
 
     </dependencies>

@@ -28,7 +28,7 @@ import java.util.List;
  * @ClassName: DefaultExceptionHandler
  * @date 2019年07月15日 18:02:58
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 @Slf4j
 public class DefaultExceptionHandler {
 

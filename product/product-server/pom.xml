@@ -88,6 +88,19 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!-- spring-cloud-starter-alibaba-sentinel -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+            <version>${sentinel.version}</version>
+        </dependency>
+
+        <!--feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
         <!--
             在springcloud上，不用导包，admin server回自动拉取eureka上的服务，
             如果导入的话啊，在admin面板上会发现有两个同名应用

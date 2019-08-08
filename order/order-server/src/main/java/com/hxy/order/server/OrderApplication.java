@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author 黄晓宇
@@ -13,11 +14,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = "com.hxy.product.client")
+@EnableFeignClients(basePackages = {"com.hxy.product.client", "com.hxy.edge.client"})
+@ComponentScan(basePackages = {"com.hxy.order.server", "com.hxy.product.client", "com.hxy.edge.client"})
 public class OrderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderApplication.class,args);
+        SpringApplication.run(OrderApplication.class, args);
     }
 
 }
