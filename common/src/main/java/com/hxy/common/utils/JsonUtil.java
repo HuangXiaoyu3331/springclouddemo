@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 /**
+ * json工具类
+ *
  * @author 黄晓宇
  * @version v1.0
  * @ClassName: JsonUtil
@@ -53,7 +55,7 @@ public class JsonUtil {
                 return obj instanceof String ? (String) obj : objectMapper.writeValueAsString(obj);
             } catch (IOException e) {
                 e.printStackTrace();
-                log.warn("对象解析为json字符串错误" + e);
+                log.warn("对象解析为json字符串错误", e);
                 return null;
             }
         }
@@ -74,7 +76,7 @@ public class JsonUtil {
                 return obj instanceof String ? (String) obj : objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
             } catch (IOException e) {
                 e.printStackTrace();
-                log.warn("对象解析为json字符串错误" + e);
+                log.warn("对象解析为json字符串错误", e);
                 return null;
             }
         }
@@ -96,7 +98,7 @@ public class JsonUtil {
         try {
             return clazz.equals(String.class) ? (T) str : objectMapper.readValue(str, clazz);
         } catch (IOException e) {
-            log.warn("json字符串解析为对象错误" + e);
+            log.warn("json字符串解析为对象错误", e);
             return null;
         }
     }
@@ -117,7 +119,7 @@ public class JsonUtil {
         try {
             return (T) (typeReference.getType().equals(String.class) ? str : objectMapper.readValue(str, typeReference));
         } catch (IOException e) {
-            log.warn("json字符串解析为对象错误" + e);
+            log.warn("json字符串解析为对象错误", e);
             return null;
         }
     }
@@ -138,7 +140,7 @@ public class JsonUtil {
         try {
             return objectMapper.readValue(str, javaType);
         } catch (IOException e) {
-            log.warn("json字符串解析为对象错误" + e);
+            log.warn("json字符串解析为对象错误", e);
             return null;
         }
     }
