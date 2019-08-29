@@ -1,7 +1,7 @@
-package com.hxy.product.server.handler;
+package com.hxy.common.handler;
 
 import com.hxy.common.core.ApiResponse;
-import com.hxy.common.core.SystemError;
+import com.hxy.common.error.SystemError;
 import com.hxy.common.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,24 +11,20 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 默认异常拦截
+ * 业务异常在模块进行拦截，其他未知异常，在网管拦截
  *
  * @author 黄晓宇
  * @version v1.0
  * @ClassName: DefaultExceptionHandler
  * @date 2019年07月15日 18:02:58
  */
-//@RestControllerAdvice
+@RestControllerAdvice
 @Slf4j
 public class DefaultExceptionHandler {
 
@@ -74,22 +70,30 @@ public class DefaultExceptionHandler {
             errorList = ((MethodArgumentNotValidException) e).getBindingResult().getFieldErrors();
         }
         if (errorList.size() > 0) {
+            log.warn("参数:{}的值无效，{}",errorList.get(0).getField(),errorList.get(0).getDefaultMessage());
             return ApiResponse.createByErrorCodeMessage(SystemError.PARSE_PARAMS_FAIL.getErrorCode(),
-                    "参数:" + errorList.get(0).getField() + "的值:" + errorList.get(0).getDefaultMessage() + "无效");
+                    "参数:" + errorList.get(0).getField() + "的值无效，" + errorList.get(0).getDefaultMessage());
         }
+        log.error("参数绑定异常",e);
         return ApiResponse.createByError(SystemError.PARSE_PARAMS_FAIL);
     }
 
     /**
-     * 拦截所有异常
+     * 拦截业务异常异常
+     */
+    @ExceptionHandler(AppException.class)
+    public ApiResponse processAppException(AppException e) {
+        log.error("业务异常",e);
+        return ApiResponse.createByError(e.getBaseError());
+    }
+
+    /**
+     * 拦截剩下的所有异常
      */
     @ExceptionHandler(Exception.class)
     public ApiResponse processException(Exception e) {
-        if (e instanceof AppException) {
-            return ApiResponse.createByError(((AppException) e).getBaseError());
-        } else {
-            return ApiResponse.createByError(SystemError.SYSTEM_ERROR);
-        }
+        log.error("系统错误",e);
+        return ApiResponse.createByError(SystemError.SYSTEM_ERROR);
     }
 
 }

@@ -1,9 +1,15 @@
 package com.hxy.edge.server.controller;
 
+import com.hxy.common.core.ApiResponse;
+import com.hxy.common.error.SystemError;
+import com.hxy.common.exception.AppException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Random;
 
 /**
@@ -28,7 +34,22 @@ public class EdgeController {
         if (new Random().nextBoolean()) {
             return "本月编程榜排名";
         }
-        throw new RuntimeException();
+        throw new AppException(SystemError.SYSTEM_ERROR);
+    }
+
+    @GetMapping("/error")
+    public String error() {
+        throw new AppException(SystemError.SYSTEM_ERROR);
+    }
+
+    @GetMapping("/addRequestHeaderTest")
+    public ApiResponse addHeaderTest(HttpServletRequest request, @RequestParam String headerName) {
+        return ApiResponse.createBySuccess(request.getHeader(headerName));
+    }
+
+    @GetMapping("/addRequestParamTest")
+    public ApiResponse addRequestParamTest(HttpServletRequest request, @RequestParam String paramName) {
+        return ApiResponse.createBySuccess(request.getParameter(paramName));
     }
 
 }

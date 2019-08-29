@@ -1,5 +1,6 @@
 package com.hxy.common.core;
 
+import com.hxy.common.error.BaseError;
 import lombok.Data;
 
 /**

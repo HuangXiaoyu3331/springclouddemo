@@ -2,6 +2,7 @@ package com.hxy.common.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.hxy.common.error.BaseError;
 
 import java.io.Serializable;
 import java.util.Objects;

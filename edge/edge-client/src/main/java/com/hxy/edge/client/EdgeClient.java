@@ -21,7 +21,7 @@ public interface EdgeClient {
      * 获取每日新闻
      * 偶发性抛异常，做降级处理
      *
-     * @return
+     * @return 新闻
      */
     @GetMapping("/getNews")
     String getNews();

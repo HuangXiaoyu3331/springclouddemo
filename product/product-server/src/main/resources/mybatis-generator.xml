@@ -16,6 +16,8 @@
                         connectionURL="jdbc:mysql://localhost:3306/springclouddemo?useSSL=false&amp;serverTimezone=GMT%2B8&amp;useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root"
                         password="123456">
+            <!--使用mysql8需要加上这个属性，不然有可能生成别的库的表-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 
         <javaTypeResolver>

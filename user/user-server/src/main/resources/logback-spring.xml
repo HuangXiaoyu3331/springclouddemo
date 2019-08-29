@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <contextName>user</contextName>
+
+    <!--配置日志文件存放目录-->
+    <property name="log.home" value="C:\Users\EDZ\Desktop\do"/>
+
+    <!-- 彩色日志 -->
+    <!-- 彩色日志依赖的渲染类 （INFO：绿色  WARN：黄色  ERROR：红色）-->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <!-- 彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(%5p) %magenta(${PID:- }) --- [%15.15thread] %cyan(%-40.40logger{39}) : %m%n"/>
+    <!-- Console 输出设置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+        <!--日志输出级别-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <!--生产环境配置-->
+    <springProfile name="prod,test">
+        <!-- 文件保存日志的相关配置 ERROR -->
+        <appender name="ERROR-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 保存日志文件的路径 -->
+            <file>${log.home}/error.log</file>
+            <!-- 日志格式 -->
+            <encoder>
+                <pattern>%d{HH:mm:ss} [%class:%line] : %m%n</pattern>
+            </encoder>
+            <!-- 日志级别过滤器 -->
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <!-- 过滤的级别 -->
+                <level>ERROR</level>
+                <!-- 匹配时的操作：接收（记录） -->
+                <onMatch>ACCEPT</onMatch>
+                <!-- 不匹配时的操作：拒绝（不记录） -->
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <!-- 循环政策：基于时间创建日志文件 -->
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- 日志文件名格式 -->
+                <fileNamePattern>${log.home}/error/%d{yyyy-MM-dd}-error.%i.log</fileNamePattern>
+                <!-- 最大保存时间：30天-->
+                <maxHistory>30</maxHistory>
+                <maxFileSize>10MB</maxFileSize>
+            </rollingPolicy>
+        </appender>
+
+        <!-- 文件保存日志的相关配置 INFO，按时间跟大小进行分割 -->
+        <appender name="INFO-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 保存日志文件的路径 -->
+            <file>${log.home}/info.log</file>
+            <!-- 日志格式 -->
+            <encoder>
+                <pattern>%d{HH:mm:ss} [%class:%line] : %m%n</pattern>
+            </encoder>
+            <!-- 日志级别过滤器 -->
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <!-- 过滤的级别 -->
+                <level>INFO</level>
+                <!-- 匹配时的操作：接收（记录） -->
+                <!--<onMatch>ACCEPT</onMatch>-->
+                <!-- 不匹配时的操作：拒绝（不记录） -->
+                <!--<onMismatch>DENY</onMismatch>-->
+            </filter>
+            <!-- 循环政策：基于时间创建日志文件 -->
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- 日志文件名格式 -->
+                <fileNamePattern>${log.home}/info/%d{yyyy-MM-dd}-info.%i.log</fileNamePattern>
+                <!-- 最大保存时间：30天-->
+                <maxHistory>30</maxHistory>
+                <maxFileSize>10MB</maxFileSize>
+            </rollingPolicy>
+        </appender>
+    </springProfile>
+
+
+    <!--生产环境的日志输出配置-->
+    <springProfile name="prod,test">
+        <!-- 基于info处理日志：具体控制台或者文件对日志级别的处理还要看所在appender配置的filter，如果没有配置filter，则使用root配置 -->
+        <root level="info">
+            <!--<appender-ref ref="STDOUT"/>-->
+            <appender-ref ref="INFO-OUT"/>
+            <appender-ref ref="ERROR-OUT"/>
+        </root>
+    </springProfile>
+
+    <!--开发环境日志配置-->
+    <springProfile name="dev">
+        <!-- 输出mybatis的sql语句,没有这句就无法输出mybatis的sql语句，name属性指定到要输出日志的dao，即mybatis要代理的dao -->
+        <logger name="com.hxy.user.server.dao" level="DEBUG"/>
+    </springProfile>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

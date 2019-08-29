@@ -1,8 +1,8 @@
 package com.hxy.product.server.service;
 
 import com.hxy.common.core.ApiResponse;
-import com.hxy.product.client.vo.resquest.ProductResVo;
-import com.hxy.product.server.bean.model.ProductModel;
+import com.hxy.product.client.vo.response.ProductRepVo;
+import com.hxy.product.client.vo.resquest.ProductReqVo;
 
 /**
  * @author 黄晓宇
@@ -12,9 +12,15 @@ import com.hxy.product.server.bean.model.ProductModel;
  */
 public interface ProductService {
 
-    ApiResponse add(ProductResVo model);
+    ApiResponse add(ProductReqVo model);
 
     ApiResponse list(int pageNo, int pageSize);
 
-    ApiResponse get(Long id);
+    /**
+     * 根据id获取商品
+     *
+     * @param id 商品id
+     * @return ProductModel
+     */
+    ProductRepVo get(Long id);
 }

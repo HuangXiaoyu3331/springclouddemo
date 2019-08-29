@@ -1,10 +1,8 @@
 package com.hxy.product.server.controller;
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.hxy.common.core.ApiResponse;
-import com.hxy.product.client.vo.resquest.ProductResVo;
-import com.hxy.product.server.bean.model.ProductModel;
+import com.hxy.product.client.vo.response.ProductRepVo;
+import com.hxy.product.client.vo.resquest.ProductReqVo;
 import com.hxy.product.server.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,25 +23,34 @@ public class ProductController {
     private ProductService productService;
 
     /**
-     * blockHandler 函数，原方法调用被限流/降级/系统保护的时候调用
+     * 根据商品id获取商品
+     *
+     * @param id 商品id
+     * @return ApiResponse
      */
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello world";
-    }
-
     @GetMapping("/get")
     public ApiResponse get(Long id) {
-        return productService.get(id);
+        return ApiResponse.createBySuccess(productService.get(id));
     }
 
     @PostMapping("/add")
-    public ApiResponse add(@Valid @RequestBody ProductResVo productModel) {
+    public ApiResponse add(@Valid @RequestBody ProductReqVo productModel) {
         return productService.add(productModel);
     }
 
     @GetMapping("/list")
     public ApiResponse list(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
         return productService.list(pageNo, pageSize);
+    }
+
+    /**
+     * 对内接口测试，根据id获取商品
+     *
+     * @param id 商品id
+     * @return ProductModel
+     */
+    @GetMapping("/internalTest")
+    public ProductRepVo internalTest(Long id) {
+        return productService.get(id);
     }
 }

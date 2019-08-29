@@ -12,11 +12,11 @@ import java.math.BigDecimal;
  *
  * @author 黄晓宇
  * @version v1.0
- * @ClassName: ProductResVo
+ * @ClassName: ProductReqVo
  * @date 2019年07月13日 17:17:51
  */
 @Data
-public class ProductResVo {
+public class ProductReqVo {
 
     @NotBlank
     private String name;

@@ -16,5 +16,14 @@
         <module>edge-server</module>
     </modules>
 
+    <dependencies>
+        <!--依赖common 服务-->
+        <dependency>
+            <groupId>com.hxy</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

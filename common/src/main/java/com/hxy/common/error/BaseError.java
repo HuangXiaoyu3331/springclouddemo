@@ -1,4 +1,4 @@
-package com.hxy.common.core;
+package com.hxy.common.error;
 
 /**
  * @author 黄晓宇

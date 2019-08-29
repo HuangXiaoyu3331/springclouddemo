@@ -1,6 +1,6 @@
 package com.huang.apigateway.config;
 
-import com.huang.apigateway.handler.JsonExceptionHandler;
+import com.huang.apigateway.handler.DefaultExceptionHandler;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.context.annotation.Bean;
@@ -15,25 +15,25 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * 异常处理类配置
+ *
  * @author 黄晓宇
  * @version v1.0
  * @ClassName: ExceptionConfig
  * @date 2019年07月11日 15:59:11
  */
-//@Configuration
+@Configuration
 public class ExceptionConfig {
-    /**
-     * 自定义异常处理[@@]注册Bean时依赖的Bean，会从容器中直接获取，所以直接注入即可
-     */
+
     @Primary
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public ErrorWebExceptionHandler errorWebExceptionHandler(ObjectProvider<List<ViewResolver>> viewResolversProvider,
                                                              ServerCodecConfigurer serverCodecConfigurer) {
-        JsonExceptionHandler jsonExceptionHandler = new JsonExceptionHandler();
-        jsonExceptionHandler.setViewResolvers(viewResolversProvider.getIfAvailable(Collections::emptyList));
-        jsonExceptionHandler.setMessageWriters(serverCodecConfigurer.getWriters());
-        jsonExceptionHandler.setMessageReaders(serverCodecConfigurer.getReaders());
-        return jsonExceptionHandler;
+        DefaultExceptionHandler defaultExceptionHandler = new DefaultExceptionHandler();
+        defaultExceptionHandler.setViewResolvers(viewResolversProvider.getIfAvailable(Collections::emptyList));
+        defaultExceptionHandler.setMessageWriters(serverCodecConfigurer.getWriters());
+        defaultExceptionHandler.setMessageReaders(serverCodecConfigurer.getReaders());
+        return defaultExceptionHandler;
     }
 }

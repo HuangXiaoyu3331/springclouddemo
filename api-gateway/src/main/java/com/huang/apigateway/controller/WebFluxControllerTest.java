@@ -1,6 +1,6 @@
 package com.huang.apigateway.controller;
 
-import com.hxy.common.core.SystemError;
+import com.hxy.common.error.SystemError;
 import com.hxy.common.exception.AppException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,10 +1,10 @@
 package com.hxy.common.exception;
 
-import com.hxy.common.core.BaseError;
-import com.hxy.common.core.ErrorMsg;
+import com.hxy.common.error.BaseError;
 
 /**
- * 程序异常类
+ * 外部服务异常类
+ *
  * @author 黄晓宇
  * @version v1.0
  * @ClassName: AppException
@@ -12,16 +12,12 @@ import com.hxy.common.core.ErrorMsg;
  */
 public class AppException extends RuntimeException {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -444971967082120545L;
 
     private BaseError baseError;
 
     public BaseError getBaseError() {
         return baseError;
-    }
-
-    public AppException(Exception ex) {
-        super(ex.getMessage(), ex);
     }
 
     public AppException(BaseError error) {
