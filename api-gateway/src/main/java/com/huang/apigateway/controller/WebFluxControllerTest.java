@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 /**
+ * webflux 测试接口
+ *
  * @author 黄晓宇
  * @version v1.0
  * @ClassName: WebFluxControllerTest
@@ -16,12 +18,12 @@ import reactor.core.publisher.Mono;
 public class WebFluxControllerTest {
 
     @GetMapping("/hello")
-    public Mono<String> hello(){
+    public Mono<String> hello() {
         return Mono.just("Welcome to reactive world");
     }
 
     @GetMapping("/webfluxerror")
-    public Mono<String> webfluxerror(){
+    public Mono<String> webfluxerror() {
         return Mono.error(new AppException(SystemError.SYSTEM_ERROR));
     }
 

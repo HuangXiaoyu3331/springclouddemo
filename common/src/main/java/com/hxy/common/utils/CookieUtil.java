@@ -22,11 +22,15 @@ public class CookieUtil {
     /**
      * cookie 名称
      */
-    private final static String COOKIE_NAME = CommonConst.User.LOGIN_TOKEN;
+    private final static String COOKIE_NAME = CommonConst.Cookie.LOGIN_TOKEN;
     /**
      * cookie 过期时间，单位s
      */
-    private final static int MAX_AGE = CommonConst.User.REDIS_SESSION_EXPIRE_TIME;
+    private final static int MAX_AGE = CommonConst.Cookie.REDIS_SESSION_EXPIRE_TIME;
+    /**
+     * cookie path
+     */
+    private final static String COOKIE_PATH = CommonConst.Cookie.COOKIE_PATH;
 
     /**
      * 读取登录cookie
@@ -51,7 +55,7 @@ public class CookieUtil {
     public static void writeLoginToken(HttpServletResponse response, String token) {
         Cookie ck = new Cookie(COOKIE_NAME, token);
         //代表设置在根目录
-        ck.setPath("/");
+        ck.setPath(COOKIE_PATH);
         ck.setHttpOnly(true);
         //单位是秒。
         //如果这个maxage不设置的话，cookie就不会写入硬盘，而是写在内存。只在当前页面有效。
@@ -70,7 +74,7 @@ public class CookieUtil {
         if (cks != null) {
             for (Cookie ck : cks) {
                 if (StringUtils.equals(ck.getName(), COOKIE_NAME)) {
-                    ck.setPath("/");
+                    ck.setPath(COOKIE_PATH);
                     //设置成0，代表删除此cookie。
                     ck.setMaxAge(0);
                     log.info("del cookieName:{},cookieValue:{}", ck.getName(), ck.getValue());

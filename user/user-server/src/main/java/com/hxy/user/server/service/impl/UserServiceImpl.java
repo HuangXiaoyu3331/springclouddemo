@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
                 CookieUtil.writeLoginToken(httpServletResponse, session.getId());
                 // 将用户信息存到redis
                 LoginUserInfoVo loginUserInfoVo = ObjectMapperUtil.convert(userModel, LoginUserInfoVo.class);
-                redisUtil.setex(session.getId(), ObjectMapperUtil.obj2Json(loginUserInfoVo), CommonConst.User.REDIS_SESSION_EXPIRE_TIME);
+                redisUtil.setex(session.getId(), ObjectMapperUtil.obj2Json(loginUserInfoVo), CommonConst.Cookie.REDIS_SESSION_EXPIRE_TIME);
                 return ApiResponse.createBySuccess();
             }
         }

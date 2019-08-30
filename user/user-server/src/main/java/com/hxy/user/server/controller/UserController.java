@@ -1,11 +1,12 @@
 package com.hxy.user.server.controller;
 
 import com.hxy.common.core.ApiResponse;
+import com.hxy.common.utils.CookieUtil;
+import com.hxy.common.utils.RedisUtil;
 import com.hxy.user.client.vo.reqeust.LoginUserVo;
 import com.hxy.user.client.vo.reqeust.RegisterUserReqVo;
 import com.hxy.user.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     /**
      * 注册用户
@@ -45,9 +48,14 @@ public class UserController {
     /**
      * 登出
      */
-    @GetMapping
-    public ApiResponse logout() {
-        return null;
+    @GetMapping("/logout")
+    public ApiResponse logout(HttpServletRequest request, HttpServletResponse response) {
+        // 删除cookie
+        CookieUtil.delLoginToken(request, response);
+        // 删除redis缓存
+        String loginToken = CookieUtil.readLoginToken(request);
+        redisUtil.del(loginToken);
+        return ApiResponse.createBySuccess();
     }
 
 }

@@ -44,22 +44,36 @@ public class AuthorityFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-
         String requestPath = exchange.getRequest().getURI().getPath();
+        log.info("用户请求接口:{}", requestPath);
         // 登录请求，不进行认证
         if (requestPath.equals(UrlEnum.LOGIN_PATH.getPath())) {
             return chain.filter(exchange);
         }
 
         // 其他接口需要认证
-        List<HttpCookie> loginCookie = exchange.getRequest().getCookies().get(CommonConst.User.LOGIN_TOKEN);
+        List<HttpCookie> loginCookie = exchange.getRequest().getCookies().get(CommonConst.Cookie.LOGIN_TOKEN);
         if (CollectionUtils.isNotEmpty(loginCookie)) {
-            String cookieValue = loginCookie.get(0).getValue();
-            LoginUserInfoVo loginUserInfoVo = ObjectMapperUtil.str2Obj(redisUtil.get(cookieValue), LoginUserInfoVo.class);
+            String loginCookieValue = loginCookie.get(0).getValue();
+            LoginUserInfoVo loginUserInfoVo = ObjectMapperUtil.str2Obj(redisUtil.get(loginCookieValue), LoginUserInfoVo.class);
             if (loginUserInfoVo != null) {
+                // 用户已经登录
                 // 重新设置redis session的过期时间
-                redisUtil.expire(cookieValue, CommonConst.User.REDIS_SESSION_EXPIRE_TIME);
-                return chain.filter(exchange);
+                redisUtil.expire(loginCookieValue, CommonConst.Cookie.REDIS_SESSION_EXPIRE_TIME);
+                return chain.filter(exchange).then(
+                        // .then方法执行的逻辑相当于zuul的后置过滤器
+                        Mono.fromRunnable(() -> {
+                            if (redisUtil.exists(CommonConst.Cookie.LOGIN_TOKEN)) {
+                                // 重新设置cookie的过期时间
+                                ResponseCookie responseCookie = ResponseCookie.from(CommonConst.Cookie.LOGIN_TOKEN, loginCookieValue)
+                                        .maxAge(CommonConst.Cookie.REDIS_SESSION_EXPIRE_TIME)
+                                        .httpOnly(true)
+                                        .path(CommonConst.Cookie.COOKIE_PATH)
+                                        .build();
+                                exchange.getResponse().getCookies().add(CommonConst.Cookie.LOGIN_TOKEN, responseCookie);
+                            }
+                        })
+                );
             }
         }
 
