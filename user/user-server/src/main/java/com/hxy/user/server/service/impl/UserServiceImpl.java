@@ -2,6 +2,7 @@ package com.hxy.user.server.service.impl;
 
 import com.hxy.common.core.ApiResponse;
 import com.hxy.common.enums.DeleteFlagEnum;
+import com.hxy.common.error.CommonConst;
 import com.hxy.common.error.SystemError;
 import com.hxy.common.error.UserError;
 import com.hxy.common.exception.AppException;
@@ -82,7 +83,7 @@ public class UserServiceImpl implements UserService {
                 CookieUtil.writeLoginToken(httpServletResponse, session.getId());
                 // 将用户信息存到redis
                 LoginUserInfoVo loginUserInfoVo = ObjectMapperUtil.convert(userModel, LoginUserInfoVo.class);
-                redisUtil.setex(session.getId(), ObjectMapperUtil.obj2Json(loginUserInfoVo), Const.REDIS_SESSION_EXPIRE_TIME);
+                redisUtil.setex(session.getId(), ObjectMapperUtil.obj2Json(loginUserInfoVo), CommonConst.User.REDIS_SESSION_EXPIRE_TIME);
                 return ApiResponse.createBySuccess();
             }
         }
