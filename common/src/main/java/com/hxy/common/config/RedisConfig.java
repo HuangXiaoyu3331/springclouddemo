@@ -30,47 +30,69 @@ import java.util.Set;
 @Data
 public class RedisConfig {
 
-    // 连接超时时间
+    /**
+     * 连接超时时间
+     */
     @Value("${spring.redis.timeout:3000}")
     private int timeout;
 
-    // 返回值的超时时间
+    /**
+     * 返回值的超时时间
+     */
     @Value("${spring.redis.so-timeout:3000}")
     private int soTimeout;
 
-    // 节点信息
+    /**
+     * 节点信息
+     */
     @Value("#{'${spring.redis.cluster.nodes}'.split(',')}")
     private List<String> clusterNodes;
 
-    // 最大重定向次数
+    /**
+     * 最大重定向次数
+     */
     @Value("${spring.redis.cluster.max-redirects:3}")
     private Integer maxRedirects;
 
-    // 最大连接数
+    /**
+     * 最大连接数
+     */
     @Value("${spring.redis.jedis.pool.max-active:8}")
     private int maxActive;
 
-    // 最大空闲连接数
+    /**
+     * 最大空闲连接数
+     */
     @Value("${spring.redis.jedis.pool.max-idle:8}")
     private int maxIdle;
 
-    // 最小空闲连接数
+    /**
+     * 最小空闲连接数
+     */
     @Value("${spring.redis.jedis.pool.min-idle:0}")
     private int minIdle;
 
-    // 连接池最大阻塞等待时间（使用负值表示没有限制）
+    /**
+     * 连接池最大阻塞等待时间（使用负值表示没有限制）
+     */
     @Value("${spring.redis.jedis.pool.max-wait:10000}")
     private Long maxWait;
 
-    // 密码
+    /**
+     * 密码
+     */
     @Value("${spring.redis.password:#{null}}")
     private String password;
 
-    // 数据库
+    /**
+     * 数据库
+     */
     @Value("${spring.redis.database:0}")
     private int database;
 
-    // 最大重试次数
+    /**
+     * 最大重试次数
+     */
     @Value("${spring.redis.maxAttempts:3}")
     private int maxAttempts;
 
